@@ -24,7 +24,7 @@ PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
 PKG_URL="https://github.com/xbmc/FFmpeg/archive/${PKG_VERSION}.tar.gz"
 PKG_SOURCE_DIR="FFmpeg-${PKG_VERSION}*"
-PKG_DEPENDS_TARGET="toolchain yasm:host zlib bzip2 openssl speex"
+PKG_DEPENDS_TARGET="toolchain yasm:host zlib bzip2 openssl speex x264 libomxil-bellagio"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="FFmpeg is a complete, cross-platform solution to record, convert and stream audio and video."
 PKG_LONGDESC="FFmpeg is a complete, cross-platform solution to record, convert and stream audio and video."
@@ -131,7 +131,7 @@ configure_target() {
               --pkg-config="$TOOLCHAIN/bin/pkg-config" \
               --enable-optimizations \
               --disable-extra-warnings \
-              --disable-ffprobe \
+              --enable-ffprobe \
               --disable-ffplay \
               --disable-ffserver \
               --enable-ffmpeg \
@@ -166,6 +166,10 @@ configure_target() {
               --enable-encoder=wmav2 \
               --enable-encoder=mjpeg \
               --enable-encoder=png \
+              --enable-encoder=libx264 \
+              --enable-encoder=libx264rgb \
+              --enable-encoder=h264_omx \
+              --enable-encoder=flv \
               --disable-decoder=mpeg_xvmc \
               --enable-hwaccels \
               --disable-muxers \
@@ -174,6 +178,12 @@ configure_target() {
               --enable-muxer=asf \
               --enable-muxer=ipod \
               --enable-muxer=mpegts \
+              --enable-muxer=mp4 \
+              --enable-muxer=h264 \
+              --enable-muxer=matroska \
+              --enable-muxer=avi \
+              --enable-muxer=image2 \
+              --enable-muxer=flv \
               --enable-demuxers \
               --enable-parsers \
               --enable-bsfs \
@@ -201,7 +211,10 @@ configure_target() {
               --disable-libvo-amrwbenc \
               --disable-libvorbis \
               --disable-libvpx \
-              --disable-libx264 \
+              --enable-libx264 \
+              --enable-mmal \
+              --enable-omx \
+              --enable-omx-rpi \
               --disable-libxavs \
               --disable-libxvid \
               --enable-zlib \
