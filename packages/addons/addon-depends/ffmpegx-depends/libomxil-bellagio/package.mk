@@ -23,7 +23,7 @@ PKG_SITE="http://omxil.sourceforge.net/index.html"
 PKG_URL="https://github.com/caot/libomxil-bellagio/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_SECTION="multimedia"
-PKG_LONGDESC="omx"
+PKG_LONGDESC="Hardware accelerated video encoding/decoding for Raspberry Pi"
 PKG_AUTORECONF="no"
 
 pre_configure_target() {
@@ -33,9 +33,7 @@ pre_configure_target() {
 configure_target() {
   ./configure \
     --prefix="/usr" \
-    --host="$TARGET_NAME" \
-    --with-gnu-ld \
-    --enable-static
+    --host="$TARGET_NAME"
 }
 
 post_makeinstall_target() {
